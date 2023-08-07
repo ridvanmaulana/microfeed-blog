@@ -5,11 +5,27 @@ import {
   secondsToHHMMSS,
   htmlToPlainText
 } from "../../common-src/StringUtils";
+<<<<<<< HEAD
 import {humanizeMs, msToRFC3339} from "../../common-src/TimeUtils";
 import {ENCLOSURE_CATEGORIES, ITEM_STATUSES_DICT, STATUSES} from "../../common-src/Constants";
 import {isValidMediaFile} from "../../common-src/MediaFileUtils";
+=======
+import {
+  humanizeMs,
+  msToRFC3339
+} from "../../common-src/TimeUtils";
+import {
+  ENCLOSURE_CATEGORIES,
+  STATUSES
+} from "../../common-src/Constants";
+import {
+  isValidMediaFile
+} from "../../common-src/MediaFileUtils";
+>>>>>>> pr/85
 
-const {MICROFEED_VERSION} = require('../../common-src/Version');
+const {
+  MICROFEED_VERSION
+} = require('../../common-src/Version');
 
 export default class FeedPublicJsonBuilder {
   constructor(content, baseUrl, request, forOneItem = false) {
@@ -72,8 +88,8 @@ export default class FeedPublicJsonBuilder {
     }
 
     if (this.webGlobalSettings.favicon && this.webGlobalSettings.favicon.url) {
-        publicContent['favicon'] = urlJoinWithRelative(
-          this.publicBucketUrl, this.webGlobalSettings.favicon.url, this.baseUrl);
+      publicContent['favicon'] = urlJoinWithRelative(
+        this.publicBucketUrl, this.webGlobalSettings.favicon.url, this.baseUrl);
     }
 
     if (channel.publisher) {
@@ -94,7 +110,9 @@ export default class FeedPublicJsonBuilder {
 
   _buildPublicContentMicrofeedExtra(publicContent) {
     const channel = this.content.channel || {};
-    const subscribeMethods = this.settings.subscribeMethods || {'methods': []};
+    const subscribeMethods = this.settings.subscribeMethods || {
+      'methods': []
+    };
     const microfeedExtra = {
       microfeed_version: MICROFEED_VERSION,
       base_url: this.baseUrl,
@@ -200,11 +218,16 @@ export default class FeedPublicJsonBuilder {
       is_external_url: mediaFile.isExternalUrl,
       is_video: mediaFile.isVideo,
       is_image: mediaFile.isImage,
+      is_blog: item.is_blog,
       web_url: item.webUrl,
       json_url: item.jsonUrl,
       rss_url: item.rssUrl,
       guid: item.guid,
+<<<<<<< HEAD
       status: ITEM_STATUSES_DICT[item.status] ? ITEM_STATUSES_DICT[item.status].name : 'published',
+=======
+      tags: item.tags,
+>>>>>>> pr/85
     };
 
     if (isValidMediaFile(mediaFile)) {
@@ -286,7 +309,9 @@ export default class FeedPublicJsonBuilder {
       ...this._buildPublicContentChannel(this.content),
     };
 
-    const {items} = this.content;
+    const {
+      items
+    } = this.content;
     const existingitems = items || [];
     publicContent['items'] = [];
     existingitems.forEach((item) => {
