@@ -5,11 +5,6 @@ import {
   secondsToHHMMSS,
   htmlToPlainText
 } from "../../common-src/StringUtils";
-<<<<<<< HEAD
-import {humanizeMs, msToRFC3339} from "../../common-src/TimeUtils";
-import {ENCLOSURE_CATEGORIES, ITEM_STATUSES_DICT, STATUSES} from "../../common-src/Constants";
-import {isValidMediaFile} from "../../common-src/MediaFileUtils";
-=======
 import {
   humanizeMs,
   msToRFC3339
@@ -21,7 +16,6 @@ import {
 import {
   isValidMediaFile
 } from "../../common-src/MediaFileUtils";
->>>>>>> pr/85
 
 const {
   MICROFEED_VERSION
@@ -223,11 +217,7 @@ export default class FeedPublicJsonBuilder {
       json_url: item.jsonUrl,
       rss_url: item.rssUrl,
       guid: item.guid,
-<<<<<<< HEAD
-      status: ITEM_STATUSES_DICT[item.status] ? ITEM_STATUSES_DICT[item.status].name : 'published',
-=======
       tags: item.tags,
->>>>>>> pr/85
     };
 
     if (isValidMediaFile(mediaFile)) {
